@@ -1,6 +1,5 @@
 import socket
 import threading
-import sys
 
 HOST = '127.0.0.1'
 PORT = 10500
@@ -18,7 +17,7 @@ def receber_mensagens(sock):
             break
 
 def main():
-    nome = input("Digite seu nome para login: ").strip()
+    nome = input("Utilize seu nome para login: ").strip()
     if not nome:
         print("Nome inválido!")
         return

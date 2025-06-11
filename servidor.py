@@ -1,16 +1,15 @@
 import socket
 import threading
-import time
 
 # Dados dos clientes: {id: {"socket": socket, "addr": addr, "nome": nome}}
 clientes_conectados = {}
 clientes_lock = threading.Lock()
 proximo_id = 1
 
-HOST = '127.0.0.1'
+HOST = '127.0.0.1' # Conecta na localhost
 PORT = 10500  # Porta única para o chat
 
-def broadcast(mensagem, remetente_id=None):
+def broadcast(mensagem, remetente_id=None): # Cria o bradcast simples para gerenciar diversos clientes de maneira limpa
     with clientes_lock:
         for cliente_id, cliente_info in clientes_conectados.items():
             if remetente_id is None or cliente_id != remetente_id:
@@ -63,7 +62,7 @@ def handle_cliente(conn_socket, addr):
                 break
                 
             if data.upper() == "SAIR":
-                conn_socket.send(b"BYE")
+                conn_socket.send(b"Descontectando...")
                 break
                 
             print(f"[MSG] {nome} ({cliente_id}): {data}")
@@ -98,5 +97,7 @@ def start_server():
         print("[SERVIDOR] Desligando...")
 
 if __name__ == "__main__":
-    print("Iniciando chat da empresa - Anelim Co")
+    print ('Iniciando chat da empresa - Anelim Co')
+    print ('Seja respeitoso e direto, evite poluir o chat, se necessário considere ligar para o ramal do setor desejado')
+    print ('Quaisquer mensagens que configurem algum tipo de assédio SERÃO encaminhadas para o RH')
     start_server()
