@@ -62,7 +62,7 @@ def handle_cliente(conn_socket, addr):
                 break
                 
             if data.upper() == "SAIR":
-                conn_socket.send(b"Descontectando...")
+                conn_socket.send(b"Desconectando...")
                 break
                 
             print(f"[MSG] {nome} ({cliente_id}): {data}")
